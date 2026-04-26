@@ -1,0 +1,17 @@
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+python-multipart==0.0.12
+pydantic==2.10.3
+ 
+# PyTorch CPU — imagen más ligera para Render free tier
+torch==2.5.1+cpu
+torchvision==0.20.1+cpu
+--extra-index-url https://download.pytorch.org/whl/cpu
+ 
+# Grad-CAM
+grad-cam==1.5.4
+ 
+# Imagen
+Pillow==11.0.0
+numpy==1.26.4
+opencv-python-headless==4.10.0.84

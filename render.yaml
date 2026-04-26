@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: banana-disease-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter          # $7/mes — sin cold start. Usar free solo para pruebas.
+    healthCheckPath: /health
+    envVars:
+      - key: MODEL_PATH
+        value: /api/weights/model.pth
+    # Si usas Render Disk para persistir el .pth:
+    # disk:
+    #   name: model-weights
+    #   mountPath: /api/weights
+    #   sizeGB: 1
