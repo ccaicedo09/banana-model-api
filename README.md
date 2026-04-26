@@ -117,39 +117,6 @@ const data = await res.json();
 // data.gradcam_b64 → úsalo directamente en <Image source={{ uri: data.gradcam_b64 }} />
 ```
 
----
-
-## Deploy en Render
-
-### Opción A — Automático con `render.yaml`
-
-1. Sube el proyecto a GitHub (sin la carpeta `weights/`)
-2. En Render → **New > Blueprint** → conecta el repositorio
-3. Render detecta `render.yaml` y crea el servicio automáticamente
-
-### Opción B — Manual
-
-1. **New > Web Service** → conectar repo → Runtime: **Docker**
-2. Variables de entorno:
-   - `MODEL_PATH` = `/api/weights/model.pth`
-3. Para los pesos del modelo usa una de estas estrategias:
-
-| Estrategia | Cuándo usarla |
-|---|---|
-| **Incluir el `.pth` en el repo** (si < 100 MB) | Más simple, modelo ligero |
-| **Render Disk** (`/api/weights`) | Modelo > 100 MB, sin re-subir en cada deploy |
-| **Descargar en startup** desde S3 / Drive | Modelo > 500 MB |
-
-> MobileNetV2 con 4 clases pesa ~9 MB → puedes incluirlo directamente en el repo
-> en una rama separada o via Git LFS.
-
-### Health check
-
-Render llama a `GET /health` cada 30 s para verificar que el servicio esté vivo.
-Responde `{"status": "ok"}`.
-
----
-
 ## Variables de entorno
 
 | Variable | Default | Descripción |
